@@ -8,6 +8,7 @@ require (
 	github.com/spf13/afero v1.8.0 // indirect
 	github.com/spf13/cast v1.4.1
 	github.com/spf13/viper v1.10.1
+	github.com/thedevsaddam/govalidator v1.9.10
 	github.com/ugorji/go v1.2.6 // indirect
 	golang.org/x/crypto v0.0.0-20211215153901-e495a2d5b3d3 // indirect
 	golang.org/x/sys v0.0.0-20211216021012-1d35b9e2eb4e // indirect

@@ -17,7 +17,7 @@ type RedisStore struct {
 func (s *RedisStore) Set(key string, value string) bool {
 
 	ExpireTime := time.Minute * time.Duration(config.GetInt64("verifycode.expire_time"))
-	//本地环境方便调试
+	// 本地环境方便调试
 	if app.IsLocal() {
 		ExpireTime = time.Minute * time.Duration(config.GetInt64("verifycode.debug_expire_time"))
 	}
@@ -25,6 +25,7 @@ func (s *RedisStore) Set(key string, value string) bool {
 	return s.RedisClient.Set(s.KeyPrefix+key, value, ExpireTime)
 }
 
+// Get 实现 verifycode.Store interface 的 Get 方法
 func (s *RedisStore) Get(key string, clear bool) (value string) {
 	key = s.KeyPrefix + key
 	val := s.RedisClient.Get(key)

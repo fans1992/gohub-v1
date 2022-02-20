@@ -2,10 +2,11 @@
 package response
 
 import (
-	"github.com/gin-gonic/gin"
 	"gohub/pkg/logger"
-	"gorm.io/gorm"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
 
 // JSON 响应 200 和 JSON 数据
@@ -13,16 +14,16 @@ func JSON(c *gin.Context, data interface{}) {
 	c.JSON(http.StatusOK, data)
 }
 
-// Success 响应 200 和预设『操作成功！』的JSON 数据
+// Success 响应 200 和预设『操作成功！』的 JSON 数据
 // 执行某个『没有具体返回数据』的『变更』操作成功后调用，例如删除、修改密码、修改手机号
 func Success(c *gin.Context) {
 	JSON(c, gin.H{
 		"success": true,
-		"message": "操作成功!",
+		"message": "操作成功！",
 	})
 }
 
-// Data 响应 200 和带 data 键的JSON 数据
+// Data 响应 200 和带 data 键的 JSON 数据
 // 执行『更新操作』成功后调用，例如更新话题，成功后返回已更新的话题
 func Data(c *gin.Context, data interface{}) {
 	JSON(c, gin.H{
@@ -31,7 +32,7 @@ func Data(c *gin.Context, data interface{}) {
 	})
 }
 
-// Created 响应 201 和带 data 键的JSON 数据
+// Created 响应 201 和带 data 键的 JSON 数据
 // 执行『更新操作』成功后调用，例如更新话题，成功后返回已更新的话题
 func Created(c *gin.Context, data interface{}) {
 	c.JSON(http.StatusCreated, gin.H{
@@ -40,24 +41,29 @@ func Created(c *gin.Context, data interface{}) {
 	})
 }
 
+// CreatedJSON 响应 200 和 JSON 数据
+func CreatedJSON(c *gin.Context, data interface{}) {
+	c.JSON(http.StatusCreated, data)
+}
+
 // Abort404 响应 404，未传参 msg 时使用默认消息
 func Abort404(c *gin.Context, msg ...string) {
 	c.AbortWithStatusJSON(http.StatusNotFound, gin.H{
-		"message": defaultMessage("数据不存在， 请确定请求正确", msg...),
+		"message": defaultMessage("数据不存在，请确定请求正确", msg...),
 	})
 }
 
 // Abort403 响应 403，未传参 msg 时使用默认消息
 func Abort403(c *gin.Context, msg ...string) {
 	c.AbortWithStatusJSON(http.StatusForbidden, gin.H{
-		"message": defaultMessage("权限不足， 请确定您有对应的权限", msg...),
+		"message": defaultMessage("权限不足，请确定您有对应的权限", msg...),
 	})
 }
 
 // Abort500 响应 500，未传参 msg 时使用默认消息
 func Abort500(c *gin.Context, msg ...string) {
 	c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
-		"message": defaultMessage("服务器内部错误, 请稍候再试", msg...),
+		"message": defaultMessage("服务器内部错误，请稍后再试", msg...),
 	})
 }
 

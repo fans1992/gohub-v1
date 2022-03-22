@@ -60,7 +60,7 @@ func All() (users []User) {
 func Paginate(c *gin.Context, perPage int) (users []User, paging paginator.Paging) {
 	paging = paginator.Paginate(
 		c,
-		database.DB.Model(&User{}),
+		database.DB.Model(User{}),
 		&users,
 		app.V1URL(database.TableName(&User{})),
 		perPage,

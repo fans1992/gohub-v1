@@ -1,5 +1,5 @@
-// Package polices 用户授权
-package polices
+// Package policies  用户授权
+package policies
 
 import (
 	"github.com/gin-gonic/gin"

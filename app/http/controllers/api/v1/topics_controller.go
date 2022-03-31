@@ -2,7 +2,7 @@ package v1
 
 import (
 	"gohub/app/models/topic"
-	"gohub/app/polices"
+	"gohub/app/policies"
 	"gohub/app/requests"
 	"gohub/pkg/auth"
 	"gohub/pkg/response"
@@ -42,7 +42,7 @@ func (ctrl *TopicsController) Update(c *gin.Context) {
 		return
 	}
 
-	if ok := polices.CanModifyTopic(c, topicModel); !ok {
+	if ok := policies.CanModifyTopic(c, topicModel); !ok {
 		response.Abort403(c)
 		return
 	}
